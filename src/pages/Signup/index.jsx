@@ -1,5 +1,5 @@
 
-import {AnimationContainer, Container,  Content} from './styles'
+import {AnimationContainer, Container, Content} from './styles'
 import MyButton from '../../components/Button';
 import Input from '../../components/Input';
 import {Link, Redirect, useHistory} from 'react-router-dom';
@@ -38,9 +38,9 @@ const SignUp = ({autenticated}) => {
 
   const history = useHistory()
 
-  const onSubmitFunction = ({name, email, password}) => {
-    const user = {name, email, password};
-    api.post("/user/register", user)
+  const onSubmitFunction = ({name, email, bio, contact, course_module, password}) => {
+    const user = {name, email, bio, contact, course_module, password};
+    api.post("/users", user)
       .then((_) => {
         toast.success("sucesso ao criar a conta"); return history.push("/login")
       })
@@ -76,6 +76,32 @@ const SignUp = ({autenticated}) => {
               name="email"
               error={errors.email?.message}
             />
+
+
+
+            <Input
+              register={register}
+              label="biografia"
+              placeholder="conte algo d vc"
+              name="bio"
+              error={errors.bio?.message}
+            />
+            <Input
+              register={register}
+              label="Contato"
+              placeholder="onde char vc?"
+              name="contact"
+              error={errors.contact?.message}
+            />
+            <Input
+              register={register}
+              label="course_module"
+              placeholder="modulo do curso"
+              name="course_module"
+              error={errors.course_module?.message}
+            />
+
+
             <Input
               register={register}
               icon={FiLock}

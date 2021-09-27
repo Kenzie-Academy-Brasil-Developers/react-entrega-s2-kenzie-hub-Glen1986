@@ -1,5 +1,5 @@
 
-import {AnimationContainer, Container, Background, Content} from './styles'
+import {AnimationContainer, Container, Content} from './styles'
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import {Link, Redirect, useHistory} from 'react-router-dom';
@@ -16,11 +16,8 @@ const Login = ({autenticated, setAutenticated}) => {
     email: yup.string().email("email invalido").required("campo Obrigatorio!!!"),
     password: yup
       .string()
-      .min(8, "minimo 8 caracteres")
       .required("campo Obrigatorio!!!"),
   })
-
-
   const {
     register,
     handleSubmit,
@@ -32,23 +29,19 @@ const Login = ({autenticated, setAutenticated}) => {
   const history = useHistory()
 
   const onSubmitFunction = (data) => {
-    api.post("/user/login", data).then((response) => {
+    api.post("/sessions", data).then((response) => {
       const {token, user} = response.data;
-
       localStorage.setItem("@Doit:token", JSON.stringify(token));
       localStorage.setItem("@Doit:user", JSON.stringify(user));
-
-      setAutenticated(true)
+      //setAutenticated( true);
       return history.push("/dashboard");
     })
-      .catch((err) => toast.error("error al login", err))
+      .catch((err) => toast.error("error al login", console.log(err)))
+    console.log(data)
   };
   if (autenticated) {
     return <Redirect to="/dashboard" />
   }
-
-
-
   return (
     <Container>
       <Content>
@@ -70,7 +63,6 @@ const Login = ({autenticated, setAutenticated}) => {
               type="password"
               placeholder="password"
               name="password"
-              error={errors.password?.message}
             />
             <Button type="submit"
               title={"Logar"}
