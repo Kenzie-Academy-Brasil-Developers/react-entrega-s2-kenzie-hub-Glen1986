@@ -48,6 +48,7 @@ const SignUp = ({autenticated}) => {
 
   };
 
+
   if (autenticated) {
     return <Redirect to="/dashboard" />
   }

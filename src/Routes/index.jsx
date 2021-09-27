@@ -10,7 +10,7 @@ const Routes = () => {
   const [autenticated, setAutenticated] = useState(false)
 
   useEffect(() => {
-    const token = JSON.parse(localStorage.getItem("@Doit:token"));
+    const token = JSON.parse(localStorage.getItem("KenzieHub:token"));
     if (token) {
       return setAutenticated(true)
     }
@@ -25,6 +25,7 @@ const Routes = () => {
       </Route>
       <Route path="/login">
         <Login
+          setAutenticated={setAutenticated}
           autenticated={autenticated}>
         </Login>
       </Route>
