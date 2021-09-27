@@ -7,37 +7,38 @@ import Signup from '../pages/Signup/index'
 import Dashboard from '../pages/Dashboard';
 const Routes = () => {
 
-  const [autenticated, setAutenticated] = useState(false)
+  const [authenticated, setAuthenticated] = useState(false)
 
   useEffect(() => {
-    const token = JSON.parse(localStorage.getItem("KenzieHub:token"));
+    const token = JSON.parse(localStorage.getItem("@KenzieHub:token"));
     if (token) {
-      return setAutenticated(true)
+      return setAuthenticated(true)
     }
-  }, [autenticated])
+  }, [authenticated])
 
   return (
     <Switch>
       <Route exact path="/">
         <Home
-          autenticated={autenticated}>
+          authenticated={authenticated}>
         </Home>
       </Route>
       <Route path="/login">
         <Login
-          setAutenticated={setAutenticated}
-          autenticated={autenticated}>
+          authenticated={authenticated}
+          setAuthenticated={setAuthenticated}
+        >
         </Login>
       </Route>
       <Route path="/signup">
         <Signup
-          autenticated={autenticated}
-          setAutenticated={setAutenticated}>
+          authenticated={authenticated}
+        >
         </Signup>
       </Route>
       <Route path="/dashboard">
         <Dashboard
-          autenticated={autenticated}
+          authenticated={authenticated}
         >
         </Dashboard>
       </Route>

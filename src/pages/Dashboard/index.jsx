@@ -1,26 +1,11 @@
 //import api from '../../services/api.jsx'
 //import {useState, useEffect} from 'react';
+import {Redirect} from "react-router-dom";
 
-
-
-
-/*
-const Dashboard = () => {
-  const [user, setUser] = useState({});
-  const [token, setToken] = useState(() => {
-    const localToken = localStorage.getItem("token") || "";
-    return JSON.parse(localToken);
-  });
- 
-  useEffect(() => {
-    api.post("/sesions", {
-      headers: {Authorization: `Bearer ${token}`},
-    })
-  })
-    .then((response) => setUser(response.data))
-    .catch((err) => console.log(err))
-    */
-const Dashboard = () => {
+const Dashboard = ({authenticated}) => {
+  if (!authenticated) {
+    return <Redirect to="/login" />
+  }
   return (
     <div>dashboard</div>
   )

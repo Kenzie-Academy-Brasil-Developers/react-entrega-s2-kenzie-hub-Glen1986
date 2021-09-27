@@ -2,13 +2,13 @@ import {Redirect, useHistory} from 'react-router-dom';
 import MyButton from "../../components/Button";
 import {Container, Content} from './styles.jsx';
 
-function Home({autenticated}) {
+function Home({authenticated}) {
 
   const history = useHistory();
   const handleNavigation = (path) => {
     return history.push(path)
   }
-  if (autenticated) {
+  if (authenticated) {
     return <Redirect to="/dashboard" />
   }
   return (

@@ -11,12 +11,15 @@ import api from '../../services/api'
 import {toast} from 'react-toastify';
 
 
-const SignUp = ({autenticated}) => {
+const SignUp = ({authenticated}) => {
 
 
   const schema = yup.object().shape({
     name: yup.string().required("campo Obrigatorio!!!"),
     email: yup.string().email("email invalido").required("campo Obrigatorio!!!"),
+    bio: yup.string().required("campo Obrigatorio!!!"),
+    contact: yup.string().required("campo Obrigatorio!!!"),
+    course_module: yup.string().required("campo Obrigatorio!!!"),
     password: yup
       .string()
       .min(8, "minimo 8 caracteres")
@@ -48,8 +51,7 @@ const SignUp = ({autenticated}) => {
 
   };
 
-
-  if (autenticated) {
+  if (authenticated) {
     return <Redirect to="/dashboard" />
   }
 
@@ -128,7 +130,6 @@ const SignUp = ({autenticated}) => {
           </form>
         </AnimationContainer>
       </Content>
-
     </Container>
   )
 };

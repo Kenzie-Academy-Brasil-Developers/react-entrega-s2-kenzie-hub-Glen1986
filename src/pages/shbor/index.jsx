@@ -11,7 +11,7 @@ import {useState, useEffect} from 'react';
 import api from '../../services/api';
 import {toast} from 'react-toastify';
 
-const Dashboard = ({autenticated}) => {
+const Dashb = ({authenticated}) => {
   const [tasks, setTasks] = useState([]);
   const [token] = useState(JSON.parse(localStorage.getItem('@Doit:token')) || ""
   );
@@ -44,7 +44,7 @@ const Dashboard = ({autenticated}) => {
 
   useEffect(() => {
     loadTasks();
-  }, [autenticated]);
+  }, [authenticated]);
 
   const onSubmit = ({task}) => {
     if (!task) {
@@ -70,7 +70,7 @@ const Dashboard = ({autenticated}) => {
       .then(response => setTasks(newTasks));
   }
 
-  if (!autenticated) {
+  if (!authenticated) {
     return <Redirect to="/login" />
   }
 
@@ -100,4 +100,4 @@ const Dashboard = ({autenticated}) => {
     </Container>
   );
 };
-export default Dashboard;
+export default Dashb;
