@@ -32,8 +32,8 @@ const Login = ({autenticated, setAutenticated}) => {
   const onSubmitFunction = (data) => {
     api.post("/sessions", data).then((response) => {
       const {token, user} = response.data;
-      localStorage.setItem("@Doit:token", JSON.stringify(token));
-      localStorage.setItem("@Doit:user", JSON.stringify(user));
+      localStorage.setItem("@KenzieHub:token", JSON.stringify(token));
+      localStorage.setItem("@KenzieHub:user", JSON.stringify(user));
       setAutenticated(true)
       return history.push("/dashboard");
     })

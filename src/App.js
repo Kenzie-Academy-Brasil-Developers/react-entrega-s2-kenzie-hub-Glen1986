@@ -20,8 +20,6 @@ function App() {
         draggable
         pauseOnHover
       />
-      <ToastContainer />
-
       <Routes />
     </div>
   );
