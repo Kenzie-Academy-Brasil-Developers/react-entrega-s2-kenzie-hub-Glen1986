@@ -16,7 +16,6 @@ const Login = ({autenticated, setAutenticated}) => {
     email: yup.string().email("email invalido").required("campo Obrigatorio!!!"),
     password: yup
       .string()
-      .min(8, "minimo 8 caracteres")
       .required("campo Obrigatorio!!!"),
   })
   const {
@@ -32,12 +31,14 @@ const Login = ({autenticated, setAutenticated}) => {
   const onSubmitFunction = (data) => {
     api.post("/sessions", data).then((response) => {
       const {token, user} = response.data;
+
       localStorage.setItem("@KenzieHub:token", JSON.stringify(token));
       localStorage.setItem("@KenzieHub:user", JSON.stringify(user));
       setAutenticated(true)
       return history.push("/dashboard");
     })
-      .catch((err) => toast.error("error al login", err))
+      .catch((err) => toast.error("error al login", console.log(err)))
+    console.log(data)
   };
   if (autenticated) {
     return <Redirect to="/dashboard" />
