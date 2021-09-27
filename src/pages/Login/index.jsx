@@ -2,16 +2,17 @@
 import {AnimationContainer, Container, Content} from './styles'
 import Button from '../../components/Button';
 import Input from '../../components/Input';
-import {Link, Redirect, useHistory} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import {FiMail, FiLock} from 'react-icons/fi';
 import {useForm} from 'react-hook-form';
 import * as yup from 'yup';
 import {yupResolver} from '@hookform/resolvers/yup';
 import api from '../../services/api'
 import {toast} from 'react-toastify';
+import {Redirect} from "react-router-dom";
 
 
-const Login = ({autenticated, setAutenticated}) => {
+const Login = ({authenticated, setAuthenticated}) => {
   const schema = yup.object().shape({
     email: yup.string().email("email invalido").required("campo Obrigatorio!!!"),
     password: yup
@@ -29,18 +30,18 @@ const Login = ({autenticated, setAutenticated}) => {
   const history = useHistory()
 
   const onSubmitFunction = (data) => {
-    api.post("/sessions", data).then((response) => {
-      const {token, user} = response.data;
-
-      localStorage.setItem("@KenzieHub:token", JSON.stringify(token));
-      localStorage.setItem("@KenzieHub:user", JSON.stringify(user));
-      setAutenticated(true)
-      return history.push("/dashboard");
-    })
-      .catch((err) => toast.error("error al login", console.log(err)))
-    console.log(data)
+    api.post("/sessions", data)
+      .then((response) => {
+        // console.log(response);
+        const {token, user} = response.data;
+        localStorage.setItem("@KenzieHub:token", JSON.stringify(token));
+        localStorage.setItem("@KenzieHub:user", JSON.stringify(user));
+        setAuthenticated(true);
+        return history.push("/dashboard");
+      })
+      .catch((err) => toast.error(err))
   };
-  if (autenticated) {
+  if (authenticated) {
     return <Redirect to="/dashboard" />
   }
   return (
@@ -55,7 +56,6 @@ const Login = ({autenticated, setAutenticated}) => {
               label="Emai"
               placeholder="seu email"
               name="email"
-              error={errors.email?.message}
             />
             <Input
               register={register}
