@@ -39,7 +39,7 @@ const Login = ({authenticated, setAuthenticated}) => {
         setAuthenticated(true);
         return history.push("/dashboard");
       })
-      .catch((err) => toast.error(err))
+      .catch((err) => toast.error("nao e possivel accesar sua conta"))
   };
   if (authenticated) {
     return <Redirect to="/dashboard" />
