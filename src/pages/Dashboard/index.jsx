@@ -1,5 +1,5 @@
 
-
+/*
 import {AnimationContainer, Container, Content} from './styles'
 import Button from '../../components/Button';
 import Input from '../../components/Input';
@@ -8,10 +8,11 @@ import {FiMail, FiLock} from 'react-icons/fi';
 import {useForm} from 'react-hook-form';
 import * as yup from 'yup';
 import {yupResolver} from '@hookform/resolvers/yup';
-import api from '../../services/api'
 import {toast} from 'react-toastify';
 import {Redirect} from "react-router-dom";
+*/
 import {useEffect, useState} from "react";
+import api from '../../services/api'
 
 const Dashboard = () => {
   const [user, setUser] = useState({});
