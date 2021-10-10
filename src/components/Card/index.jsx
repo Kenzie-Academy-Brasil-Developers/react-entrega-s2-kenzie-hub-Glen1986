@@ -1,15 +1,16 @@
-import * as React from 'react';
-import CssBaseline from '@mui/material/CssBaseline';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
+import {Content} from '../../pages/Dashboard/styles';
+import {Container} from '../Card/styles';
+const Card = ({user}) => {
 
-function Card() {
+
   return (
     <>
-      <CssBaseline />
-      <Container fixed>
-        <Box sx={{bgcolor: '#002699', height: '40vh'}} >
-        </Box>
+      <Container>
+        <Content>
+          <h2>Tecnologias</h2>
+          <span>{user.name}</span>
+          <span>{user.id}</span>
+        </Content>
       </Container>
     </>
   );

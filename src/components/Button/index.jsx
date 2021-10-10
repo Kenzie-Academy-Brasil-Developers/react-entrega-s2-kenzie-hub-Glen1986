@@ -1,13 +1,14 @@
 import {Container} from './styles'
 
-const MyButton = ({title, whiteSchema = false, ...rest}) => {
+const Button = ({title,type, onClick, whiteSchema = false, ...rest}) => {
   return (
     <Container
       whiteSchema={whiteSchema}
-      type="button"
+      type={type}
       {...rest}
+      onClick={onClick}
     >{title}
     </Container>
   )
 }
-export default MyButton
+export default Button
