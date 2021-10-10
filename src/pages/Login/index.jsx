@@ -1,6 +1,6 @@
 
 import {AnimationContainer, Container, Content} from './styles'
-import Button from '../../components/Button';
+import MyButton from '../../components/Button';
 import Input from '../../components/Input';
 import {Link, useHistory} from 'react-router-dom';
 import {FiMail, FiLock} from 'react-icons/fi';
@@ -22,7 +22,6 @@ const Login = ({authenticated, setAuthenticated}) => {
   const {
     register,
     handleSubmit,
-    formState: {errors},
   } = useForm({
     resolver: yupResolver(schema),
   })
@@ -32,7 +31,6 @@ const Login = ({authenticated, setAuthenticated}) => {
   const onSubmitFunction = (data) => {
     api.post("/sessions", data)
       .then((response) => {
-        // console.log(response);
         const {token, user} = response.data;
         localStorage.setItem("@KenzieHub:token", JSON.stringify(token));
         localStorage.setItem("@KenzieHub:user", JSON.stringify(user));
@@ -65,9 +63,9 @@ const Login = ({authenticated, setAuthenticated}) => {
               placeholder="password"
               name="password"
             />
-            <Button type="submit"
+            <MyButton type="submit"
               title={"Logar"}
-            ></Button>
+            ></MyButton>
             <p>Ja tem una conta? faza seu <Link to="/signup">SignUp</Link></p>
             <p>Pagina de Inicio<Link to="/" > Home</Link></p>
           </form>
